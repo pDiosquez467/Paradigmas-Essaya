@@ -1,4 +1,4 @@
-# Programa Sintético de Ingeniería Informática
+# Programa Sintético de Paradigmas de Programación - FIUBA
 
 ## Plan de Estudios
 
