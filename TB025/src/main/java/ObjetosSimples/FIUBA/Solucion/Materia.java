@@ -36,4 +36,10 @@ public class Materia {
     public void setTipo(TipoMateria tipo) {
         this.tipo = tipo;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Materia materia)) return false;
+        return this.codigo.equals(materia.getCodigo());
+    }
 }
