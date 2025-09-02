@@ -32,6 +32,12 @@ public class Carrera {
         return cantidadMinimaCreditos;
     }
 
+    public void agregarMateriaAPlanDeEstudios(Materia materia) throws Exception {
+        if (this.perteneceAlPlanDeEstudios(materia))
+            throw new Exception("Esta materia ya pertenece al plan de estudios");
+        this.materias.add(materia);
+    }
+
     public Boolean perteneceAlPlanDeEstudios(Materia otra) {
         for (Materia materia: this.materias) {
             if (materia.equals(otra)) return true;
