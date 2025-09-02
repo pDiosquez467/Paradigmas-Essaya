@@ -8,9 +8,10 @@ public class Materia {
     private int cantidadDeCreditos;
     private TipoMateria tipo;
 
-    public Materia(String codigo, String nombre) {
+    public Materia(String codigo, String nombre, int cantidadDeCreditos) {
         this.codigo = codigo;
         this.nombre = nombre;
+        this.cantidadDeCreditos = cantidadDeCreditos;
     }
 
     public String getNombre() {
@@ -25,12 +26,8 @@ public class Materia {
         return cantidadDeCreditos;
     }
 
-    public TipoMateria getTipo() {
+    public TipoMateria getTipo(TipoMateria obligatoria) {
         return tipo;
-    }
-
-    public void setCantidadDeCreditos(int cantidadDeCreditos) {
-        this.cantidadDeCreditos = cantidadDeCreditos;
     }
 
     public void setTipo(TipoMateria tipo) {
