@@ -41,7 +41,7 @@ public class Alumno {
 
     }
 
-    public String consultarEstadoDeCarreras() {
+    public String verEstadoDeCarreras() {
         StringBuilder sb = new StringBuilder();
         for (Carrera carrera: this.carreras.keySet()) {
             sb.append(carrera.toString()).append("\nMaterias aprobadas:");
@@ -62,5 +62,11 @@ public class Alumno {
 
     private Boolean estaInscriptoEn(Carrera carrera) {
         return this.carreras.containsKey(carrera);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Alumno alumno)) return false;
+        return this.legajo.equals(alumno.getLegajo());
     }
 }
