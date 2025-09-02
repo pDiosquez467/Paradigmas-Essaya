@@ -44,4 +44,13 @@ public class Carrera {
         if (!(obj instanceof Carrera carrera)) return false;
         return this.codigo.equals(carrera.getCodigo());
     }
+
+    @Override
+    public String toString() {
+        return "Carrera{" +
+                "nombre='" + nombre + '\'' +
+                ", cantidadMinimaCreditos=" + cantidadMinimaCreditos +
+                ", codigo='" + codigo + '\'' +
+                '}';
+    }
 }

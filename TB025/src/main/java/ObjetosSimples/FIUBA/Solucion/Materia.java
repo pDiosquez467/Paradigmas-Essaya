@@ -42,4 +42,14 @@ public class Materia {
         if (!(obj instanceof Materia materia)) return false;
         return this.codigo.equals(materia.getCodigo());
     }
+
+    @Override
+    public String toString() {
+        return "Materia{" +
+                "cantidadDeCreditos=" + cantidadDeCreditos +
+                ", nombre='" + nombre + '\'' +
+                ", codigo='" + codigo + '\'' +
+                ", tipo=" + tipo +
+                '}';
+    }
 }
