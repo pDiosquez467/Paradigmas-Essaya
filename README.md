@@ -1,59 +1,63 @@
-Programa Sintético de Ingeniería Informática
-Plan de Estudios
-Paradigmas de Programación Fundamentales
+# Programa Sintético de Ingeniería Informática
 
-    Programación Orientada a Objetos
-    Programación Orientada a Eventos
-    Programación Lógica
-    Programación Funcional
-    Programación Concurrente
+## Plan de Estudios
 
-Programación Orientada a Objetos
+### Paradigmas de Programación Fundamentales
 
-    Objetos y Mensajes
-    Estado (atributos) y Comportamiento (métodos)
-    Diagramas UML:
-        Clases
-        Secuencia
-        Actividades
-        Casos de Uso
+* Programación Orientada a Objetos
+* Programación Orientada a Eventos
+* Programación Lógica
+* Programación Funcional
+* Programación Concurrente
 
-Relaciones entre Clases
+### Programación Orientada a Objetos
 
-    Asociación / Composición / Agregación (Delegación)
-    Dependencia
-    Generalización (Herencia)
-    Realización (Interfaces)
+* Objetos y Mensajes
+* Estado (atributos) y Comportamiento (métodos)
+* Diagramas UML:
+  * Clases
+  * Secuencia
+  * Actividades
+  * Casos de Uso
 
-Pilares del Diseño Orientado a Objetos
+### Relaciones entre Clases
 
-    Abstracción
-        Clases y Métodos Abstractos
-    Encapsulamiento
-    Polimorfismo
+* Asociación / Composición / Agregación (Delegación)
+* Dependencia
+* Generalización (Herencia)
+* Realización (Interfaces)
 
-Programación Funcional
+### Pilares del Diseño Orientado a Objetos
 
-    Funciones Puras
-    Inmutabilidad
-    Funciones de Primera Clase
-    Funciones de Orden Superior
-    Composición de Funciones
-    Recursión
+1. Abstracción
+   * Clases y Métodos Abstractos
+2. Encapsulamiento
+3. Polimorfismo
 
-Programación Concurrente
+### Programación Funcional
 
-    Conceptos Fundamentales
-    Sincronización
-    Comunicación entre Procesos
+* Funciones Puras
+* Inmutabilidad
+* Funciones de Primera Clase
+* Funciones de Orden Superior
+* Composición de Funciones
+* Recursión
 
-Programación Lógica y Cálculo Lambda
+### Programación Concurrente
 
-    Fundamentos de Programación Lógica
-    Nociones de Cálculo Lambda
+* Conceptos Fundamentales
+* Sincronización
+* Comunicación entre Procesos
 
-Interfaces Gráficas
+### Programación Lógica y Cálculo Lambda
 
-    Conceptos Fundamentales
-    Diseño de Interfaces
-    Interacción Usuario
+* Fundamentos de Programación Lógica
+* Nociones de Cálculo Lambda
+
+### Interfaces Gráficas
+
+* Conceptos Fundamentales
+* Diseño de Interfaces
+* Interacción Usuario
+
+---
