@@ -31,4 +31,17 @@ public class Carrera {
     public int getCantidadMinimaCreditos() {
         return cantidadMinimaCreditos;
     }
+
+    public Boolean perteneceAlPlanDeEstudios(Materia otra) {
+        for (Materia materia: this.materias) {
+            if (materia.equals(otra)) return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Carrera carrera)) return false;
+        return this.codigo.equals(carrera.getCodigo());
+    }
 }
