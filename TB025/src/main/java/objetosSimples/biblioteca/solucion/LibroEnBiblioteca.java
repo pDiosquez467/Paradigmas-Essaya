@@ -22,4 +22,20 @@ public class LibroEnBiblioteca {
     public int getCantidadDeCopias() {
         return cantidadDeCopias;
     }
+
+    public String isbn() {
+        return libro.isbn();
+    }
+
+    public void agregarCopias(int cantidadDeCopiasNuevas) {
+        Validaciones.validarMayorACero(cantidadDeCopiasNuevas, "'cantidadDeCopias' debe ser mayor a cero");
+        cantidadDeCopias += cantidadDeCopiasNuevas;
+    }
+
+    public void gestionarPrestamo() {
+        if (cantidadDeCopias == 0) {
+            throw new RuntimeException("No hay copias disponibles");
+        }
+        cantidadDeCopias -= 1;
+    }
 }
