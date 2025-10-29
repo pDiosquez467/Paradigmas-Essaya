@@ -9,3 +9,7 @@
       set
       count
       (= 27)))
+
+(assert (true? (pangrama? "Fabio me exige sin tapujos que añada cerveza al whisky")))
+
+(assert (false? (pangrama? "Pablo me exige sin tapujos que añada cerveza al whisky")))
