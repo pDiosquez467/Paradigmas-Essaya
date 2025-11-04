@@ -22,7 +22,7 @@ public class Bote {
         return this.vida == 0;
     }
 
-    public int ataque() {
+    public int getAtaque() {
         return ataque;
     }
 }
