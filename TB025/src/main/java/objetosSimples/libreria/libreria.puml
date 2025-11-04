@@ -1,0 +1,111 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Libreria {
+-clienteRepositorio: IRepositorioClientes
+-productoRepositorio: IRepositorioProductos
+-servicioCobranza: IServicioDeCobranza
+
++registrarCliente(datosCliente): void
++cargarCompra(idCliente, idProducto, mes): void
++cargarSuscripcion(idCliente, idSuscribible, tipo): void
++calcularCobroMensual(idCliente, mes): double
++calcularCobroAnual(idCliente): double
+}
+
+class ServicioDeCobranza {
++calcularCobroMensual(cliente, mes): double
++calcularCobroAnual(cliente): double
+-calcularTotalConDescuentos(cliente, compras, suscripciones): double
+}
+
+interface IRepositorioClientes {
++getViaId(idCliente): Cliente
++guardar(cliente): void
+}
+
+interface IRepositorioProductos {
++getViaId(idProducto): Producto
++getViaSuscribibleId(id): Suscribible
+}
+
+class RepositorioClientesImpl implements IRepositorioClientes {
+-clientes: Map<String, Cliente>
++getViaId(idCliente): Cliente
++guardar(cliente): void
+}
+
+class RepositorioProductosImpl implements IRepositorioProductos {
+-productos: Map<String, Producto>
++getViaId(idProducto): Producto
++guardar(producto): void
+}
+
+Libreria o-- IRepositorioClientes
+Libreria o-- IRepositorioProductos
+Libreria o-- IServicioDeCobranza
+ServicioDeCobranza ..> Cliente : uses
+ServicioDeCobranza ..> Producto : uses
+ServicioDeCobranza ..> Suscribible : uses
+
+RepoClientesHashMap ..|> IRepositorioClientes
+
+class Cliente {
+-idCliente: String
+-nombre: String
+-estaRegistrado: boolean
+-compras: HashMap<MES, List<Producto>>
+-suscripciones: List<Suscripcion>
++getComprasDelMes(mes): List<Producto>
++getSuscripciones(): List<Suscripcion>
++isRegistrado(): boolean
+}
+
+class Suscripcion {
+-item: Suscribible
+-tipo: TipoDeSuscripcion
++getPrecio(): double
+}
+
+enum MES { }
+enum TipoDeSuscripcion {
+    MENSUAL,
+    ANUAL,
+}
+
+Cliente "1" *-- "0..*" Suscripcion
+Suscripcion o-- Suscribible
+Cliente "1" *-- "0..*" Producto
+
+' Productos
+abstract class Producto {
+-id: String
+#precioBase: double ' Protegido para las subclases
++abstract getPrecio(): double
+}
+
+interface Suscribible {
++getPrecioSuscripcion(tipo: TipoDeSuscripcion): double
+}
+
+class Libro extends Producto {
++getPrecio(): double ' Implementa: return precioBase;
+}
+
+class ArticuloDeLibreria extends Producto {
+-iva: double
++getPrecio(): double ' Implementa: return precioBase * (1 + iva);
+}
+
+class Revista extends Producto implements Suscribible {
+-periodicidad: int
++getPrecio(): double ' Implementa: return precioBase;
++getPrecioSuscripcion(tipo): double
+}
+
+class Periodico extends Producto implements Suscribible {
+-periodicidad: int
++getPrecio(): double ' Implementa: return precioBase;
++getPrecioSuscripcion(tipo): double
+}
+@enduml
