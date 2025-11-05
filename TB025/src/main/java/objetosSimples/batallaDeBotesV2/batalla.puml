@@ -1,0 +1,45 @@
+@startuml
+class Juego {
+-tablero: Tablero<Bote>
++agregarBote(bote, x, y): void
++estaOcupado(x, y): boolean
++disparar(x, y, tipoDisparo): boolean // Devuelve si el disparo fue exitoso y si el bote se hundió
++reiniciar(): void
++ubicarBotes(...botes): void
+}
+
+class Bote {
+-nombre: String
+-vidaActual: int
+-vidaMaxima: int
+
++estaHundido(): boolean
++abstract recibirDisparo(tipoDeDisparo): void
+}
+
+enum Disparo {
+    CONVENCIONAL,
+    MISIL,
+}
+
+class Lancha {
+    +Lancha()
+    +recibirDisparo(tipoDisparo: Disparo): boolean
+}
+
+class BoteARemo {
+    +BoteARemo()
+    +recibirDisparo(tipoDisparo: Disparo): boolean
+}
+
+class Yate {
+    +Yate()
+    +recibirDisparo(tipoDisparo: Disparo): boolean
+}
+interface InmuneADisparoConvencional {}
+
+Bote <|-- Lancha
+Bote <|-- BoteARemo
+Bote <|-- Yate
+
+@enduml
