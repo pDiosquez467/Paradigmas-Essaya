@@ -36,10 +36,8 @@ class Yate {
     +Yate()
     +recibirDisparo(tipoDisparo: Disparo): boolean
 }
-interface InmuneADisparoConvencional {}
 
 Bote <|-- Lancha
 Bote <|-- BoteARemo
 Bote <|-- Yate
-
 @enduml
