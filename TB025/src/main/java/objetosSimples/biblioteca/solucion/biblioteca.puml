@@ -1,0 +1,112 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam classAttributeIconSize 0
+note "Facade Pattern" as N1
+
+class Biblioteca {
+    - catalogo: Catalogo
+    - gestorPrestamos: GestorDePrestamos
+    - registroDeUsuarios: RegistroDeUsuarios
+
+    + prestarLibro(idUsuario: String, isbn: String)
+    + devolverLibro(idCopia: String)
+}
+
+class GestorDePrestamos {
+    - prestamos: Map<String, List<Prestamo>>
+
+    + prestar(usuario: Usuario, copia: Copia)
+    + devolver(copia: Copia)
+    + consultarPrestamosVigentes(usuario: Usuario): List<Prestamo>
+}
+
+class RegistroDeUsuarios {
+    - usuarios: Map<String, Usuario>
+
+    + agregar(usuario: Usuario)
+    + buscar(id: String): Usuario
+}
+
+class Catalogo {
+    - libros: Map<String, Libro>
+    - copias: Map<String, List<Copia>>
+
+    + agregarLibro(libro: Libro)
+    + agregarCopia(isbn: String, copia: Copia)
+    + buscarLibro(isbn: String): Libro
+    + buscarCopiaDisponible(isbn: String): Copia
+    + consultarStock(isbn: String): int
+}
+
+class Prestamo {
+    - usuario: Usuario
+    - copia: Copia
+    - fechaDeInicio: LocalDate
+    - fechaDeVencimiento: LocalDate
+    - fechaDeDevolucion: LocalDate
+
+    + estaActivo(): boolean
+    + estaVencido(): boolean
+    + registrarDevolucion()
+}
+
+class Libro {
+    - ISBN: String
+    - titulo: String
+    - fechaDePublicacion: LocalDate
+    - autores: List<Autor>
+}
+
+class Copia {
+    - id: String
+    - libro: Libro
+    - estado: EstadoDeCopia
+
+    + esDe(isbn: String): boolean
+}
+
+class Usuario {
+    - id: String
+    - nombre: String
+}
+
+class Autor {
+    - id: String
+    - nombre: String
+    - fechaDeNacimiento: LocalDate
+    - nacionalidad: String
+}
+
+enum EstadoDeCopia {
+    DISPONIBLE,
+    PRESTADO,
+    EN_REPARACION,
+    PERDIDO
+}
+
+Biblioteca *-- Catalogo
+Biblioteca *-- RegistroDeUsuarios
+Biblioteca *-- GestorDePrestamos
+
+' RELACIONES DE NAVEGABILIDAD
+' El catalogo contiene los libros y las copias
+Catalogo o--> "*" Libro
+Catalogo o--> "*" Copia
+
+' El Gestor administra prestamos
+GestorDePrestamos o--> "*" Prestamo
+
+' Un prestamo conoce al usuario y a la copia fisica
+Prestamo --> "1" Usuario
+Prestamo --> "1" Copia
+
+' Una copia sabe a qué libro pertenece
+Copia --> "1" Libro
+
+' Un libro tiene autores
+Libro o--> "1..*" Autor
+
+Biblioteca .. N1
+
+@enduml
