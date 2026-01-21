@@ -57,7 +57,7 @@ public class Copia {
     }
 
     /**
-     * Registra la devolución de la copia, dejándola disponible nuevamente.
+     * Registra la devolución de una copia, dejándola disponible nuevamente.
      * @throws IllegalStateException si la copia no estaba prestada.
      */
     public void devolver() {
@@ -67,6 +67,10 @@ public class Copia {
         this.estado = EstadoDeCopia.DISPONIBLE;
     }
 
+    /**
+     * Registra el reingreso de una copia, dejándola disponible nuevamente.
+     * @throws IllegalStateException si la copia no estaba perdida o en reparación.
+     */
     public void reingresar() {
         if (this.estado != EstadoDeCopia.EN_REPARACION &&
                 this.estado != EstadoDeCopia.PERDIDO) {
