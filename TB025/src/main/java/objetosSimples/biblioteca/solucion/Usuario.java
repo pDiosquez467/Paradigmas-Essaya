@@ -2,52 +2,38 @@ package main.java.objetosSimples.biblioteca.solucion;
 
 import main.java.objetosSimples.validaciones.Validaciones;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Objects;
 
-public class Usuario {
-    private final String id;
-    private final String nombre;
-    private final List<Libro> librosPrestados;
+/**
+ * Representa un usuario dentro del sistema de la biblioteca.
+ * @param id: el identificador único del usuario dentro del sistema. No debe ser nulo ni vacío.
+ * @param nombre: el nombre completo del usuario. No debe ser nulo ni vacío.
+ */
+public record Usuario(String id, String nombre) {
+    public Usuario {
+        Validaciones.validarNotNull(id, "id");
+        Validaciones.validarNoVacio(id, "id");
+        Validaciones.validarNotNull(nombre, "nombre");
+        Validaciones.validarNoVacio(nombre, "nombre");
 
-    public Usuario(String id, String nombre) {
-        // TODO: Agregar validaciones correspondientes.
-        this.id = id;
-        this.nombre = nombre;
-        this.librosPrestados = new ArrayList<>();
     }
 
-    public void agregarLibro(Libro libro) {
-        Validaciones.validarNotNull(libro, "Libro");
-        if (contieneLibro(libro)) {
-            throw new RuntimeException("Libro repetido");
-        }
-        librosPrestados.add(libro);
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Usuario usuario)) return false;
+        return Objects.equals(id, usuario.id);
     }
 
-    public void devolverLibro(Libro libro) {
-        Validaciones.validarNotNull(libro, "Libro");
-        if (!contieneLibro(libro)) {
-            throw new RuntimeException("Libro no encontrado");
-        }
-        librosPrestados.remove(libro);
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 
-    public boolean contieneLibro(Libro libro) {
-        return librosPrestados.stream()
-                .anyMatch(l -> l.equals(libro));
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public List<Libro> getLibrosPrestados() {
-        return Collections.unmodifiableList(librosPrestados);
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                '}';
     }
 }
